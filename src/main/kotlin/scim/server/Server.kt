@@ -10,6 +10,7 @@ import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import org.slf4j.LoggerFactory
+import scim.util.AuthUtil
 import scim.util.ResponseUtil
 import scim.util.UserUtil
 import scim.util.Utils
@@ -31,7 +32,7 @@ object Server {
 
                     get("/Users") {
                         log.info("GET /Users")
-                        if (!Utils.checkAuth(call.request.headers["Authorization"])) {
+                        if (!AuthUtil.checkAuth(call.request.headers["Authorization"])) {
                             log.warn("Unauthorized")
                             call.respond(HttpStatusCode.Unauthorized)
                         } else {
@@ -41,7 +42,7 @@ object Server {
 
                     get("/Users/{uuid}"){
                         log.info("GET /Users/{uuid}")
-                        if (!Utils.checkAuth(call.request.headers["Authorization"])) {
+                        if (!AuthUtil.checkAuth(call.request.headers["Authorization"])) {
                             log.warn("Unauthorized")
                             call.respond(HttpStatusCode.Unauthorized)
                         } else {
@@ -54,7 +55,7 @@ object Server {
 
                     post("/Users"){
                         log.info("POST /Users")
-                        if (!Utils.checkAuth(call.request.headers["Authorization"])) {
+                        if (!AuthUtil.checkAuth(call.request.headers["Authorization"])) {
                             log.warn("Unauthorized")
                             call.respond(HttpStatusCode.Unauthorized)
                         } else {
@@ -73,7 +74,7 @@ object Server {
 
                     put("/Users/{uuid}"){
                         log.info("PUT /Users/{uuid}")
-                        if (!Utils.checkAuth(call.request.headers["Authorization"])) {
+                        if (!AuthUtil.checkAuth(call.request.headers["Authorization"])) {
                             log.warn("Unauthorized")
                             call.respond(HttpStatusCode.Unauthorized)
                         } else {

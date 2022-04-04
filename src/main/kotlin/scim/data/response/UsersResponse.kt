@@ -8,8 +8,3 @@ data class UsersResponse(
     val count: Int,
     val resources: List<User>
 )
-
-@Serializable
-data class UserResponse(
-    val user: User
-)
